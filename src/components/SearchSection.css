@@ -1,0 +1,80 @@
+.search-wrapper {
+  background: linear-gradient(135deg, #0b3d91, #001f54); 
+  padding: 50px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.search-card {
+  background: rgba(255, 255, 255, 0.15); 
+  backdrop-filter: blur(10px);
+  padding: 30px;
+  border-radius: 20px;
+  border: 1px solid rgba(255,255,255,0.2);
+  width: 100%;
+  max-width: 1000px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.search-grid {
+  display: flex;
+  gap: 20px;
+  align-items: flex-end;
+  flex-wrap: wrap;
+}
+
+.input-group-box {
+  flex: 1;
+  min-width: 200px;
+  display: flex;
+  flex-direction: column;
+}
+
+.input-group-box label {
+  color: white;
+  margin-bottom: 8px;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.input-group-box input {
+  padding: 12px;
+  border-radius: 10px;
+  border: none;
+  font-size: 1rem;
+  outline: none;
+}
+
+.button-box {
+  min-width: 150px;
+}
+
+.find-btn {
+  width: 100%;
+  padding: 12px;
+  background-color: #ffc107; /* Yellow */
+  color: black;
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+  font-size: 1rem;
+}
+
+.find-btn:hover {
+  background-color: #e0a800;
+  transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+  .search-grid {
+    flex-direction: column;
+  }
+  .button-box {
+    width: 100%;
+    margin-top: 10px;
+  }
+}

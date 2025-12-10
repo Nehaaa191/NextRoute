@@ -1,0 +1,91 @@
+
+.reviews-section {
+    padding: 50px 0;
+    background-color: #f9f9f9;
+    overflow: hidden; 
+}
+
+
+.reviews-carousel {
+    display: flex;
+    width: 100%;
+    overflow: hidden; 
+    
+    mask-image: linear-gradient(
+        to right,
+        transparent,
+        black 10%,
+        black 90%,
+        transparent
+    );
+}
+
+
+.reviews-group {
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px; 
+    padding-right: 30px; 
+    animation: scroll-left 25s linear infinite; 
+    flex-shrink: 0;
+}
+
+
+.review-card {
+    height: 250px;
+    width: 250px;
+    min-width: 250px; 
+    border: 1px solid rgb(3, 3, 12);
+    background-color: rgb(242, 244, 220);
+    box-shadow: 10px 10px rgba(0, 0, 0, 0.197);
+    padding: 20px;
+    border-radius: 12px;
+    transition: 0.5s;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.review-card:hover {
+    transform: scale(1.05); 
+    box-shadow: 10px 10px rgba(0, 0, 0, 0.3);
+    background-color: #fff;
+}
+
+.review-card h1 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.stars {
+    margin-bottom: 15px;
+    color: #ffd700; 
+}
+
+.review-text {
+    font-size: 0.95rem;
+    line-height: 1.4;
+    color: #555;
+}
+
+
+@keyframes scroll-left {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-100%);
+    }
+}
+
+
+@media (max-width: 768px) {
+    .review-card {
+        width: 220px;
+        min-width: 220px;
+        height: 300px; 
+    }
+}
