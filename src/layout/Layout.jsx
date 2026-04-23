@@ -11,7 +11,7 @@ const Layout = () => {
       <Navbar />
 
       
-      <main style={{ minHeight: '80vh' }}>
+      <main style={{ minHeight: '80vh', paddingTop: '65px' }}>
         <Outlet />
       </main>
 

@@ -8,6 +8,8 @@ const PackageModal = ({ destination, onClose, onSelect }) => {
       id: 1,
       name: "Budget Explorer", 
       price: "₹15,000", 
+      priceNum: 15000,
+      nights: 3,
       color: "blue", 
       features: ["3 Nights Stay", "Sightseeing Tour", "Breakfast Included", "Airport Transfer"] 
     },
@@ -15,6 +17,8 @@ const PackageModal = ({ destination, onClose, onSelect }) => {
       id: 2,
       name: "Luxury Escape", 
       price: "₹35,000", 
+      priceNum: 35000,
+      nights: 5,
       color: "gold", 
       isPopular: true, 
       features: ["5 Nights in 5⭐ Hotel", "All Meals Included", "Private Guide", "Luxury Cruise Dinner", "Spa Session"] 
@@ -23,6 +27,8 @@ const PackageModal = ({ destination, onClose, onSelect }) => {
       id: 3,
       name: "Adventure Pack", 
       price: "₹25,000", 
+      priceNum: 25000,
+      nights: 4,
       color: "orange", 
       features: ["4 Nights Camping", "Trekking & Hiking", "River Rafting", "Bonfire Night", "GoPro Recording"] 
     }

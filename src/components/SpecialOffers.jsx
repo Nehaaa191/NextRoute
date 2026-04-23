@@ -7,6 +7,7 @@ const offers = [
     place: "Bali, Indonesia",
     img: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e",
     details: "5 Nights • Hotel • Breakfast • City Tour",
+    nights: 5,
     oldPrice: 54999,
     newPrice: 39999,
     side: "left"
@@ -16,6 +17,7 @@ const offers = [
     place: "Paris, France",
     img: "https://images.unsplash.com/photo-1502602898657-3e91760cbb34",
     details: "4 Nights • Eiffel Entry • Cruise Dinner",
+    nights: 4,
     oldPrice: 89999,
     newPrice: 69999,
     side: "center"
@@ -25,6 +27,7 @@ const offers = [
     place: "Sen, Singapore",
     img: "https://images.unsplash.com/photo-1503899036084-c55cdd92da26",
     details: "3 Nights • Universal Studios • City Pass",
+    nights: 3,
     oldPrice: 64999,
     newPrice: 49999,
     side: "right"
@@ -32,7 +35,7 @@ const offers = [
 ];
 
 
-export default function SpecialOffers({ openModal }) {
+export default function SpecialOffers({ openOfferModal }) {
   const [hover, setHover] = useState(null);
 
   return (
@@ -61,9 +64,9 @@ export default function SpecialOffers({ openModal }) {
                 <p className="old-price">₹{offer.oldPrice.toLocaleString()}</p>
                 <p className="new-price">₹{offer.newPrice.toLocaleString()}</p>
                 <p className="save">Save ₹{savings.toLocaleString()}!</p>
-                <button 
+                <button
                   className="book-btn"
-                  onClick={() => openModal(offer.place)}
+                  onClick={() => openOfferModal(offer)}
                 >
                   Book Now
                 </button>

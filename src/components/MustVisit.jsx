@@ -64,7 +64,7 @@ const places = [
 const infinitePlaces = [...places, ...places, ...places, ...places];
 
 
-const MustVisit = ({ openModal }) => {
+const MustVisit = ({ openBookingModal }) => {
   const [selectedPlace, setSelectedPlace] = useState(null);
   const [activeImage, setActiveImage] = useState(""); 
   
@@ -118,8 +118,8 @@ const MustVisit = ({ openModal }) => {
   
   const handleBookClick = () => {
     if (selectedPlace) {
-        openModal(selectedPlace.name); 
-        setSelectedPlace(null); 
+        openBookingModal({ name: selectedPlace.name, price: selectedPlace.price });
+        setSelectedPlace(null);
     }
   };
 
