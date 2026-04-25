@@ -1,0 +1,11 @@
+# Railway build configuration
+# Fixes JAVA_HOME issue with Maven wrapper
+
+[phases.setup]
+nixPkgs = ["jdk21", "maven"]
+
+[phases.build]
+cmds = ["mvn clean install -DskipTests -Pproduction"]
+
+[start]
+cmd = "java -jar target/nextroute.jar"
