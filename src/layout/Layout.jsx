@@ -1,7 +1,7 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
-import Navbar from '../components/Navbar'; 
-import Footer from '../components/Footer'; 
+import Navbar from '../components/navbar'; 
+import Footer from '../components/footer'; 
 import '../components/Navbar.css'; 
 
 const Layout = () => {
@@ -11,7 +11,7 @@ const Layout = () => {
       <Navbar />
 
       
-      <main style={{ minHeight: '80vh', paddingTop: '65px' }}>
+      <main style={{ minHeight: '80vh' }}>
         <Outlet />
       </main>
 
