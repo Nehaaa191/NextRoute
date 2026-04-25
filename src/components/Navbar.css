@@ -13,11 +13,14 @@ a {
 
 
 .navbar {
-  background: #0A1F44; 
+  background: #0A1F44 !important; 
   padding: 15px 0;
-  position: sticky;
+  position: fixed !important;
   top: 0;
-  z-index: 50;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 1000;
   box-shadow: 0 4px 15px rgba(0,0,0,0.2);
   transition: background 0.3s ease;
 }
