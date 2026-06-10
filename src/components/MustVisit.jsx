@@ -167,7 +167,7 @@ const MustVisit = ({ openBookingModal }) => {
                 <span className="badge bg-warning text-dark mb-2 px-3 py-2 rounded-pill">⭐ Top Rated</span>
                 <h1 className="fw-bold display-5 mb-2">{selectedPlace.name}</h1>
                 <h5 className="text-secondary mb-4">📍 {selectedPlace.location}</h5>
-                <p className="lead text-muted place-desc">{selectedPlace.fullDetails}</p>
+                <p className="lead text-muted place-desc">{selectedPlace.fullDetails || selectedPlace.desc}</p>
               </div>
               
               <div className="mt-4 pt-4 border-top">
