@@ -31,12 +31,13 @@ public class JwtUtil {
         return Keys.hmacShaKeyFor(keyBytes);
     }
 
-    public String generateToken(Long userId, String email, String name, String role) {
+    public String generateToken(Long userId, String email, String name, String role, String sessionId) {
         Map<String, Object> claims = new HashMap<>();
         claims.put("userId", userId);
         claims.put("email", email);
         claims.put("name", name);
         claims.put("role", role);
+        claims.put("sessionId", sessionId);
 
         return Jwts.builder()
                 .claims(claims)
@@ -64,6 +65,11 @@ public class JwtUtil {
     public String getRole(String token) {
         Claims claims = validateToken(token);
         return claims.get("role", String.class);
+    }
+
+    public String getSessionId(String token) {
+        Claims claims = validateToken(token);
+        return claims.get("sessionId", String.class);
     }
 
     public boolean isValid(String token) {

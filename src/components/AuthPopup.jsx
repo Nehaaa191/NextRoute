@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { apiPost, setToken } from "../services/api";
 import { useAuth } from "../context/AuthContext";
+import { requestForToken } from "../firebase";
 import "./login.css";
 
 
@@ -61,10 +62,18 @@ export default function AuthPopup({ isOpen, onClose }) {
     setServerError("");
 
     try {
+      let fcmToken = null;
+      try {
+        fcmToken = await requestForToken();
+      } catch (e) {
+        console.error("Failed to get FCM token", e);
+      }
+
       if (mode === "login") {
         const data = await apiPost("/auth/login", {
           email: form.email,
           password: form.password,
+          fcmToken: fcmToken
         });
         setToken(data.token);
         refreshUser();
@@ -74,6 +83,7 @@ export default function AuthPopup({ isOpen, onClose }) {
           name: form.name,
           email: form.email,
           password: form.password,
+          fcmToken: fcmToken
         });
         setToken(data.token);
         refreshUser();

@@ -31,3 +31,6 @@ dist-ssr
 # Backend build output
 backend/target/
 backend/uploads/
+
+# Firebase Service Account (contains private key - NEVER commit)
+backend/src/main/resources/firebase-service-account.json

@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { onMessageListener } from './firebase'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Layout from './layout/Layout'
 
@@ -9,6 +10,24 @@ import Contact from './pages/contact'
 import Admin from './pages/Admin'
 
 function App() {
+  useEffect(() => {
+    onMessageListener()
+      .then((payload) => {
+        if (payload.data && payload.data.action === 'LOGOUT') {
+          console.log("Received remote LOGOUT command!");
+          localStorage.removeItem('nextroute_token');
+          alert("You have been logged out because you reached the maximum number of devices.");
+          window.location.reload();
+          return;
+        }
+
+        // Here you could use a proper toast library. Using alert for simplicity.
+        console.log("Received foreground message:", payload);
+        alert(`Notification: ${payload.notification?.title}\n${payload.notification?.body}`);
+      })
+      .catch((err) => console.log('failed: ', err));
+  }, []);
+
   return (
     <BrowserRouter>
       <Routes>
