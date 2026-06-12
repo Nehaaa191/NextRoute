@@ -32,7 +32,7 @@ public class ReviewController {
     @GetMapping
     public ResponseEntity<List<ReviewResponse>> getReviews(
             @RequestParam(defaultValue = "10") int count) {
-        List<Review> reviews = reviewRepository.findRandomReviews(Math.min(count, 30));
+        List<Review> reviews = reviewRepository.findRandomReviews(count);
         List<ReviewResponse> response = reviews.stream()
                 .map(r -> new ReviewResponse(
                         r.getId(),

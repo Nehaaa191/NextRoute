@@ -9,6 +9,6 @@ import java.util.List;
 // Uses MySQL's ORDER BY RAND() to show different reviews on each page load.
 public interface ReviewRepository extends JpaRepository<Review, Long> {
 
-    @Query(value = "SELECT * FROM reviews ORDER BY RAND() LIMIT :count", nativeQuery = true)
+    @Query(value = "SELECT * FROM (SELECT * FROM reviews ORDER BY rating DESC LIMIT 30) AS top_reviews ORDER BY RAND() LIMIT :count", nativeQuery = true)
     List<Review> findRandomReviews(@Param("count") int count);
 }
