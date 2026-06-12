@@ -13,6 +13,9 @@ function App() {
   useEffect(() => {
     onMessageListener()
       .then((payload) => {
+        // If messaging is not supported, payload will be empty
+        if (!payload || (!payload.data && !payload.notification)) return;
+
         if (payload.data && payload.data.action === 'LOGOUT') {
           console.log("Received remote LOGOUT command!");
           localStorage.removeItem('nextroute_token');
