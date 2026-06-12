@@ -9,6 +9,7 @@ public class BookingDTO {
         private Integer persons;
         private String packageName;
         private Integer totalPrice;
+        private String phone;
 
         public String getDestination() { return destination; }
         public void setDestination(String destination) { this.destination = destination; }
@@ -22,6 +23,8 @@ public class BookingDTO {
         public void setPackageName(String packageName) { this.packageName = packageName; }
         public Integer getTotalPrice() { return totalPrice; }
         public void setTotalPrice(Integer totalPrice) { this.totalPrice = totalPrice; }
+        public String getPhone() { return phone; }
+        public void setPhone(String phone) { this.phone = phone; }
     }
 
     public static class BookingResponse {

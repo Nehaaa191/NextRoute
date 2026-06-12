@@ -2,9 +2,9 @@ import React from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Layout from './layout/Layout'
 
-
 import Home from './pages/home'
 import About from './pages/about'
+import WhatsAppWidget from './components/WhatsAppWidget'
 import Contact from './pages/contact'
 import Admin from './pages/Admin'
 
@@ -28,6 +28,7 @@ function App() {
         
         </Route>
       </Routes>
+      <WhatsAppWidget />
     </BrowserRouter>
   )
 }

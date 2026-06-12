@@ -43,47 +43,16 @@ const Home = () => {
     setShowModal(true);
   };
 
-  const handlePackageSelect = async (pkg) => {
-    const fromDateStr = searchData.fromDate || new Date().toISOString().split('T')[0];
-    const dateRange = (searchData.fromDate && searchData.toDate)
-      ? `${searchData.fromDate} to ${searchData.toDate}`
-      : fromDateStr;
-
-    const priceNum = typeof pkg.priceNum === 'number' 
-        ? pkg.priceNum 
-        : parseInt(pkg.price.replace(/[^0-9]/g, '') || '0');
-
-    const newBooking = {
-      destination: searchData.destination,
-      fromDate: fromDateStr,
-      toDate: searchData.toDate || null,
-      persons: searchData.people,
+  const handlePackageSelect = (pkg) => {
+    setShowModal(false);
+    setOfferModal({
+      name: searchData.destination,
+      price: pkg.price,
+      priceNum: pkg.priceNum || parseInt(pkg.price.replace(/[^0-9]/g, '') || '0'),
+      nights: pkg.nights,
+      details: pkg.name + ' — ' + (pkg.features ? pkg.features.join(', ') : ''),
       packageName: pkg.name,
-      totalPrice: priceNum,
-    };
-
-    try {
-      await apiPost('/bookings', newBooking);
-      setBookings([...bookings, {
-        name: 'Guest',
-        destination: searchData.destination,
-        date: dateRange,
-        people: searchData.people,
-        packageName: pkg.name,
-        price: pkg.price,
-      }]);
-      setShowModal(false);
-      setSuccessData({
-        destination: searchData.destination,
-        fromDate: fromDateStr,
-        toDate: searchData.toDate || '',
-        persons: searchData.people,
-        packageName: pkg.name,
-        price: pkg.price,
-      });
-    } catch (err) {
-      alert(err.message || "Please login to book!");
-    }
+    });
   };
 
   const handleMustVisitPackageSelect = (pkg) => {
@@ -116,6 +85,7 @@ const Home = () => {
       persons: bookingInfo.persons,
       packageName: pkgName,
       totalPrice: bookingInfo.totalPrice,
+      phone: bookingInfo.phone,
     };
 
     try {

@@ -5,6 +5,7 @@ import com.nextroute.model.Booking;
 import com.nextroute.model.User;
 import com.nextroute.repository.BookingRepository;
 import com.nextroute.repository.UserRepository;
+import com.nextroute.service.WhatsAppService;
 import com.nextroute.util.JwtUtil;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,11 +24,13 @@ public class BookingController {
     private final BookingRepository bookingRepository;
     private final UserRepository userRepository;
     private final JwtUtil jwtUtil;
+    private final WhatsAppService whatsAppService;
 
-    public BookingController(BookingRepository bookingRepository, UserRepository userRepository, JwtUtil jwtUtil) {
+    public BookingController(BookingRepository bookingRepository, UserRepository userRepository, JwtUtil jwtUtil, WhatsAppService whatsAppService) {
         this.bookingRepository = bookingRepository;
         this.userRepository = userRepository;
         this.jwtUtil = jwtUtil;
+        this.whatsAppService = whatsAppService;
     }
 
     @PostMapping
@@ -59,8 +62,21 @@ public class BookingController {
             booking.setPersons(request.getPersons());
             booking.setPackageName(request.getPackageName());
             booking.setTotalPrice(request.getTotalPrice());
+            booking.setPhone(request.getPhone());
 
             bookingRepository.save(booking);
+
+            if (request.getPhone() != null && !request.getPhone().isEmpty()) {
+                String msg = "Hello " + user.getName() + "!\n\n" +
+                        "🌍 *Your NextRoute Booking is Confirmed!*\n\n" +
+                        "📍 *Destination*: " + booking.getDestination() + "\n" +
+                        "📦 *Package*: " + booking.getPackageName() + "\n" +
+                        "📅 *Dates*: " + booking.getFromDate() + (booking.getToDate() != null ? " to " + booking.getToDate() : "") + "\n" +
+                        "👥 *Persons*: " + booking.getPersons() + "\n" +
+                        "💵 *Total Price*: ₹" + booking.getTotalPrice() + "\n\n" +
+                        "Thank you for choosing NextRoute! Have a safe trip! ✈️";
+                whatsAppService.sendBookingConfirmation(request.getPhone(), msg);
+            }
 
             return ResponseEntity.status(HttpStatus.CREATED)
                     .body(Map.of("message", "Booking confirmed!", "bookingId", booking.getId()));

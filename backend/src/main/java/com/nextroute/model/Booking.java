@@ -34,6 +34,9 @@ public class Booking {
     @Column(name = "total_price", nullable = false)
     private Integer totalPrice;
 
+    @Column(name = "phone_number", length = 20)
+    private String phone;
+
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private BookingStatus status = BookingStatus.CONFIRMED;
@@ -72,6 +75,9 @@ public class Booking {
 
     public Integer getTotalPrice() { return totalPrice; }
     public void setTotalPrice(Integer totalPrice) { this.totalPrice = totalPrice; }
+
+    public String getPhone() { return phone; }
+    public void setPhone(String phone) { this.phone = phone; }
 
     public BookingStatus getStatus() { return status; }
     public void setStatus(BookingStatus status) { this.status = status; }

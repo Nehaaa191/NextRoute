@@ -47,6 +47,13 @@
             <artifactId>spring-boot-starter-websocket</artifactId>
         </dependency>
 
+        <!-- Twilio API for WhatsApp Notifications -->
+        <dependency>
+            <groupId>com.twilio.sdk</groupId>
+            <artifactId>twilio</artifactId>
+            <version>10.1.2</version>
+        </dependency>
+
         <!-- JWT auth (jjwt) -->
         <dependency>
             <groupId>io.jsonwebtoken</groupId>

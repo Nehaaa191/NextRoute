@@ -7,6 +7,7 @@ export default function BookingModal({ offer, onClose, onSuccess }) {
   const [persons, setPersons] = useState(1);
   const [fromDate, setFromDate] = useState('');
   const [toDate, setToDate] = useState('');
+  const [phone, setPhone] = useState('');
   const [errors, setErrors] = useState({});
 
   const today = new Date().toISOString().split('T')[0];
@@ -40,6 +41,7 @@ export default function BookingModal({ offer, onClose, onSuccess }) {
       if (fromDate && toDate && toDate <= fromDate) e.toDate = 'End date must be after start date';
     }
     if (persons < 1) e.persons = 'At least 1 person required';
+    if (!phone || phone.length < 10) e.phone = 'Valid phone number required';
     setErrors(e);
     return Object.keys(e).length === 0;
   };
@@ -47,7 +49,7 @@ export default function BookingModal({ offer, onClose, onSuccess }) {
   const handleBook = () => {
     if (!validate()) return;
     const finalToDate = nights > 0 ? computedToDate : toDate;
-    onSuccess({ persons, fromDate, toDate: finalToDate, totalPrice });
+    onSuccess({ persons, fromDate, toDate: finalToDate, totalPrice, phone });
   };
 
   return (
@@ -87,6 +89,18 @@ export default function BookingModal({ offer, onClose, onSuccess }) {
               className={errors.persons ? 'bm-input bm-input-err' : 'bm-input'}
             />
             {errors.persons && <span className="bm-err">{errors.persons}</span>}
+          </div>
+
+          <div className="bm-field">
+            <label>WhatsApp Number</label>
+            <input
+              type="tel"
+              placeholder="+1234567890"
+              value={phone}
+              onChange={e => { setPhone(e.target.value); setErrors({ ...errors, phone: '' }); }}
+              className={errors.phone ? 'bm-input bm-input-err' : 'bm-input'}
+            />
+            {errors.phone && <span className="bm-err">{errors.phone}</span>}
           </div>
 
           <div className="bm-field">
