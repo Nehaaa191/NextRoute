@@ -2,8 +2,7 @@ import React, { useState, useRef, useEffect } from 'react'
 import { apiGet } from '../services/api'
 
 import './MustVisit.css' 
-
-
+import ShareButton from './ShareButton'
 
 const MustVisit = ({ openBookingModal }) => {
   const [places, setPlaces] = useState([]);
@@ -176,6 +175,10 @@ const MustVisit = ({ openBookingModal }) => {
                         <small className="text-muted text-uppercase fw-bold">Total Price</small>
                         <h2 className="text-success fw-bold m-0">{selectedPlace.price}</h2>
                     </div>
+                    <ShareButton 
+                      title={selectedPlace.name} 
+                      text={`Check out ${selectedPlace.name} in ${selectedPlace.location} on NextRoute! Only ${selectedPlace.price}.`} 
+                    />
                  </div>
 
                 

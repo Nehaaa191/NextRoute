@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { apiGet } from '../services/api';
 import './PackageModal.css';
-
+import ShareButton from './ShareButton';
 const PackageModal = ({ destination, onClose, onSelect }) => {
   const [packages, setPackages] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -95,6 +95,12 @@ const PackageModal = ({ destination, onClose, onSelect }) => {
                   >
                     Choose Plan
                   </button>
+                  <div className="mt-3 text-center" style={{ marginTop: '15px', display: 'flex', justifyContent: 'center' }}>
+                    <ShareButton 
+                      title={`${pkg.name} to ${destination}`} 
+                      text={`I found this amazing ${pkg.name} package to ${destination} for just ${pkg.price} on NextRoute!`}
+                    />
+                  </div>
                 </div>
 
               </div>
